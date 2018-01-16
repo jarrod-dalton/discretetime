@@ -24,7 +24,7 @@
 #' @param method Interpolation method passed to \code{approx()}. Defaults to
 #'   \code{"constant"}. See \code{help(approx)} for details.
 #' @param rule Rule by which observations outside the interval
-#'   \code{[min(data$xvar), max(data$xvar)]} are handled. Defaults to \code{rule=2};
+#'   \code{[min(data$xvar), max(data$xvar)]} are handled. Defaults to \code{rule=1};
 #'   see \code{help(approx)} for details.
 #' @param ... Other parameters passed to \code{approx()}.
 #'
@@ -41,8 +41,8 @@
 #' mapToDiscreteTime(irregularData, end=24, dt=0.5)
 mapToDiscreteTime <- function(data, xvar="value", timevar="t",
                               start, end, dt, method="constant",
-                              rule=2, ...){
-  stopifnot(is.data.frame(data))
+                              rule=1, ...){
+  stopifnot("data.frame" %in% class(data))
   stopifnot(is.character(xvar))
   stopifnot(is.character(timevar))
   if(length(xvar)>1){
